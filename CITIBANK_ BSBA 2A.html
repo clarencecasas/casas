@@ -1,0 +1,3062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citibank - Banking, Credit Cards, Loans and Investments</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            /* New color palette: 60% gray, 30% white, 10% blue */
+            --primary-color: #2c5aa0;  /* blue for accents */
+            --primary-dark: #1d4080;   /* darker blue */
+            --primary-light: #3b69af;  /* lighter blue */
+            --secondary-color: #404040; /* dark gray */
+            
+            --gray-dark: #404040;      /* dark gray */
+            --gray-medium: #606060;    /* medium gray */
+            --gray-light: #909090;     /* light gray */
+            --gray-lighter: #e0e0e0;   /* very light gray */
+            
+            --white-color: #ffffff;    /* pure white */
+            --off-white: #f8f8f8;      /* off-white */
+            
+            --text-dark: #333333;      /* dark text */
+            --text-light: #f8f8f8;     /* light text */
+            
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+            --sidebar-width: 250px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--gray-lighter);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            color: var(--gray-dark);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 3px;
+            width: 60px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        section:hover h2:after {
+            width: 100px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--gray-medium);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        .container {
+            /* display: grid; */
+            grid-template-columns: var(--sidebar-width) 1fr;
+            min-height: 100vh;
+            width: 100%;
+            position: relative;
+        }
+
+        .nav {
+            background-color: var(--gray-dark);
+            color: var(--text-light);
+            padding: 1.5rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: var(--sidebar-width);
+            overflow-y: auto;
+            box-shadow: var(--box-shadow);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        /* Ensure the content doesn't overlap with the fixed sidebar */
+        .content {
+            padding: 1rem 1rem;
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            max-width: 1600px;
+            background-color: var(--off-white);
+        }
+
+        .nav-brand {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .nav-logo {
+            width: 120px;
+            height: 120px;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2DX0hdbQ4bXrh8SPbDtZmci5gMbhjHjxqeg&s');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .nav-logo:hover {
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .nav-brand h1 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-tagline {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .nav-links {
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .nav-links a:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .nav-links a:hover {
+            color: var(--white-color);
+        }
+
+        .nav-links a:hover:before {
+            left: 0;
+        }
+
+        .nav-links a.active {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        /* New styles for page sections */
+        section {
+            padding: 10px;
+            border-bottom: 1px solid var(--gray-lighter);
+            scroll-margin-top: 2rem;
+            background-color: var(--white-color);
+            margin-bottom: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            /* New display property to make sections act as pages */
+            display: none;
+            min-height: calc(100vh - 2rem);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* Show only active section */
+        section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Always show home section on initial load */
+        section#home {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Page transition effects */
+        .page-enter {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .page-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .page-exit {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .page-exit-active {
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        .card {
+            background: var(--white-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            height: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            background: var(--gray-medium);
+            color: var(--text-light);
+            padding: 2.5rem 3rem;
+        }
+
+        .card-body {
+            padding: 2.5rem 3rem;
+            line-height: 1.7;
+        }
+
+        .card-body p, .card-body ul, .card-body ol {
+            margin-bottom: 1.25rem;
+        }
+
+        .card-body ul, .card-body ol {
+            padding-left: 1.5rem;
+        }
+
+        .card-body li {
+            margin-bottom: 0.5rem;
+        }
+
+        .card-footer {
+            padding: 1.25rem 2rem;
+            background: var(--gray-lighter);
+        }
+
+        .bg-primary {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        .bg-secondary {
+            background-color: var(--gray-medium);
+            color: var(--text-light);
+        }
+
+        .bg-light {
+            background-color: var(--off-white);
+        }
+
+        .bg-dark {
+            background-color: var(--gray-dark);
+            color: var(--text-light);
+        }
+
+        .text-primary {
+            color: var(--primary-color);
+        }
+
+        .text-secondary {
+            color: var(--gray-medium);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover:before {
+            left: 0;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: var(--gray-medium);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-center {
+            justify-content: center;
+            align-items: center;
+        }
+
+        .space-between {
+            justify-content: space-between;
+        }
+
+        .align-center {
+            align-items: center;
+        }
+
+        .profile-card {
+            background: var(--white-color);
+            border-radius: var(--border-radius);
+            padding: 2.25rem;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: var(--transition);
+            width: 280px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .profile-card:hover .profile-img {
+            transform: scale(1.05);
+        }
+
+        .profile-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .profile-card p {
+            color: var(--grey-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-card p strong {
+            color: var(--primary-dark);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--light-grey);
+        }
+
+        th {
+            background-color: var(--primary-dark);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--light-color);
+        }
+
+        tr:hover {
+            background-color: rgba(0, 123, 255, 0.05);
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+        }
+        
+        /* Mobile navigation toggle */
+        .nav-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary-dark);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            z-index: 1001;
+            font-size: 1.25rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .nav {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .nav.active {
+                transform: translateX(0);
+            }
+            
+            .content {
+                margin-left: 0;
+                width: 100%;
+                padding: 1.5rem;
+            }
+            
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 992px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+        }
+        
+        /* New added styles */
+        .rounded-image {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .rounded-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .stat-cards {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.25rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--grey-color);
+            font-size: 0.9rem;
+        }
+        
+        .timeline-point {
+            display: flex;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+        
+        .timeline-year {
+            background: var(--primary-dark);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            min-width: 100px;
+            text-align: center;
+            margin-right: 1rem;
+        }
+        
+        .timeline-content {
+            flex: 1;
+            padding: 0.5rem 1rem;
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+        }
+        
+        .feature-list {
+            margin: 1.5rem 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .feature-item i {
+            color: var(--success-color);
+            margin-right: 0.75rem;
+            font-size: 1.25rem;
+        }
+        
+        .content-block, .image-block {
+            padding: 1rem;
+        }
+        
+        .mt-4 {
+            margin-top: 2rem;
+        }
+        
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-dark);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+        }
+        
+        .branch-card {
+            display: flex;
+            margin-bottom: 1.5rem;
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .branch-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .branch-info {
+            padding: 1.5rem;
+            flex: 1;
+        }
+        
+        .branch-image {
+            width: 150px;
+            min-height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .branch-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+        
+        .branch-address {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+        
+        .branch-address i {
+            color: var(--grey-color);
+            margin-right: 0.5rem;
+            margin-top: 0.3rem;
+        }
+        
+        .branch-contact {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .branch-contact i {
+            color: var(--grey-color);
+            margin-right: 0.5rem;
+        }
+        
+        .awards-timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .awards-timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--light-grey);
+            top: 0;
+            bottom: 0;
+            left: 20px;
+        }
+        
+        .award-year {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        .year-label {
+            position: relative;
+            background-color: var(--primary-dark);
+            color: white;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            margin-left: 40px;
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .award-items {
+            margin-left: 40px;
+        }
+        
+        .award-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .award-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .award-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 2px;
+            background-color: var(--light-grey);
+            top: 50%;
+            left: -20px;
+        }
+        
+        .award-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .award-description {
+            color: var(--grey-color);
+        }
+        
+        /* Fix for product cards */
+        .product-card {
+            background: var(--white-color);
+            border-radius: var(--border-radius);
+            padding: 2.5rem 3rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            height: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-card p, .product-card ul, .product-card ol {
+            margin-bottom: 1.25rem;
+        }
+
+        .product-card ul, .product-card ol {
+            padding-left: 1.5rem;
+        }
+
+        .product-card li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-category {
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-category h3 {
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-grey);
+            color: var(--primary-dark);
+        }
+        
+        /* Hero section styling */
+        .hero {
+            background: linear-gradient(rgba(64, 64, 64, 0.8), rgba(64, 64, 64, 0.9)), url('https://placehold.co/1920x1080/2c5aa0/white?text=Citibank+Headquarters') center/cover no-repeat;
+            color: var(--text-light);
+            padding: 5rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+            border-radius: var(--border-radius);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--white-color);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .slide-in-right {
+            animation: slideInRight 1s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .scale-in {
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Progress bars */
+        .progress-container {
+            margin-bottom: 1.5rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background-color: var(--light-grey);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 4px;
+            width: 0;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Feature cards */
+        .feature-card {
+            text-align: center;
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            background: var(--white-color);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            height: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2);
+            color: var(--secondary-color);
+        }
+
+        .feature-card p {
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+
+        .references-container {
+            margin-bottom: 2rem;
+        }
+        
+        .reference-list {
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .reference-list li {
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+        
+        .references-container h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--gray-lighter);
+        }
+        
+        .reference-note {
+            background: var(--gray-lighter);
+            padding: 2.5rem;
+            border-radius: var(--border-radius);
+            margin-top: 2rem;
+        }
+        
+        /* Page navigation controls */
+        .page-navigation {
+            display: none;
+        }
+        
+        /* Page indicator */
+        .page-indicator {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--white-color);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            z-index: 999;
+            font-weight: 500;
+            display: none;
+        }
+        
+        .page-indicator.visible {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        /* Enhanced section styling to look more like pages */
+        section {
+            padding: 2rem;
+            margin-bottom: 0;
+            min-height: calc(100vh - 2rem);
+            overflow-y: auto;
+            border-radius: 0;
+            box-shadow: none;
+        }
+        
+        /* Section content wrapper */
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 4rem; /* Space for navigation */
+        }
+        
+        /* Enhanced section styling for page-like appearance */
+        section {
+            padding: 2rem;
+            margin-bottom: 0;
+            min-height: calc(100vh - 2rem);
+            border-radius: 0;
+            box-shadow: none;
+            position: relative;
+        }
+        
+        /* Add page effect - subtle shadow at the bottom */
+        section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0));
+            pointer-events: none;
+        }
+        
+        /* Page counter */
+        section::before {
+            content: attr(data-page-number);
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 0.8rem;
+            color: var(--gray-light);
+            opacity: 0.7;
+        }
+        
+        /* Mobile styles for page navigation */
+        @media (max-width: 768px) {
+            /* No longer need special handling for removed navigation */
+            section {
+                padding-bottom: 2rem;
+            }
+            
+            .page-indicator {
+                top: 1rem;
+                right: 1rem;
+            }
+        }
+        
+        /* Loading overlay for page transitions */
+        .page-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .page-transition-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .page-transition-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <button class="nav-toggle" id="navToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <div class="container">
+        <nav class="nav" id="mainNav">
+            <div class="nav-brand">
+                <div class="nav-logo"></div>
+                <h1>Citibank</h1>
+                <div class="nav-tagline">Your Financial Partner for Life</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#background"><i class="fas fa-building"></i> Company Background</a></li>
+                <li><a href="#corporate-profile"><i class="fas fa-id-card"></i> Corporate Profile</a></li>
+                <li><a href="#vision-mission"><i class="fas fa-eye"></i> Vision & Mission</a></li>
+                <li><a href="#branches"><i class="fas fa-map-marker-alt"></i> Branches & Offices</a></li>
+                <li><a href="#operations"><i class="fas fa-chart-line"></i> Scope of Business</a></li>
+                <li><a href="#products"><i class="fas fa-credit-card"></i> Products & Services</a></li>
+                <li><a href="#financial-highlights"><i class="fas fa-dollar-sign"></i> Financial Highlights</a></li>
+                <li><a href="#awards"><i class="fas fa-trophy"></i> Awards & Recognitions</a></li>
+                <li><a href="#structure"><i class="fas fa-sitemap"></i> Organizational Structure</a></li>
+                <li><a href="#board"><i class="fas fa-users"></i> Board of Directors</a></li>
+                <li><a href="#management"><i class="fas fa-user-tie"></i> Management Committee</a></li>
+                <li><a href="#capital-structure"><i class="fas fa-coins"></i> Capital Structure</a></li>
+                <li><a href="#governance"><i class="fas fa-balance-scale"></i> Corporate Governance</a></li>
+                <li><a href="#csr"><i class="fas fa-hands-helping"></i> Corporate Social Responsibility</a></li>
+                <li><a href="#financial-report"><i class="fas fa-file-invoice-dollar"></i> Financial Reports</a></li>
+                <li><a href="#team"><i class="fas fa-user-friends"></i> Our Team</a></li>
+                <li><a href="#references"><i class="fas fa-book"></i> References</a></li>
+                <li><a href="#disclaimer"><i class="fas fa-exclamation-circle"></i> Disclaimer</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <section id="home">
+                <div class="hero" data-aos="fade-up" style="background: linear-gradient(rgba(64, 64, 64, 0.8), rgba(64, 64, 64, 0.9)), url('https://www.hdrinc.com/sites/default/files/2022-10/External_Towards_City_.jpg') center/cover no-repeat;">
+                    <h1 class="animate__animated animate__fadeInDown">Welcome to Citibank</h1>
+                    <p class="animate__animated animate__fadeIn animate__delay-1s">Your Financial Partner for Life</p>
+                    <div class="hero-buttons animate__animated animate__fadeInUp animate__delay-2s">
+                        <a href="#products" class="btn">Our Products</a>
+                        <a href="#branches" class="btn btn-outline">Find Branches</a>
+                    </div>
+                </div>
+                
+                <div class="grid grid-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Secure Banking</h3>
+                        <p>Industry-leading security measures to protect your finances and personal information.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>Global Presence</h3>
+                        <p>Operations in over 160 countries and jurisdictions, serving millions of customers worldwide.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Digital Innovation</h3>
+                        <p>Cutting-edge mobile and online banking solutions for seamless financial management.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Company Background -->
+            <section id="background" data-aos="fade-up">
+                <h2>Company Background</h2>
+                <div class="grid grid-2">
+                    <div class="content-block" data-aos="fade-right" data-aos-delay="100">
+                        <p>Citibank was founded on <strong>June 16, 1812</strong>, as the City Bank of New York. Over the years, it has grown through a series of mergers and acquisitions to become one of the "Big Four" banks in the United States and a globally recognized financial institution. The bank's history spans more than two centuries, evolving from a modest financial institution to a global banking powerhouse.</p>
+                        
+                        <p>The bank was renamed First National City Bank of New York in 1962, then shortened to First National City Bank in 1968, and finally became <strong>Citibank</strong> in 1976. Citibank is now the consumer division of financial services multinational <strong>Citigroup</strong>.</p>
+                        
+                        
+                        <div class="timeline-point" data-aos="fade-up" data-aos-delay="200">
+                            <div class="timeline-year">1812</div>
+                            <div class="timeline-content">Founded as City Bank of New York</div>
+                        </div>
+                        
+                        <div class="timeline-point" data-aos="fade-up" data-aos-delay="300">
+                            <div class="timeline-year">1976</div>
+                            <div class="timeline-content">Renamed to Citibank</div>
+                        </div>
+                        
+                        <div class="timeline-point" data-aos="fade-up" data-aos-delay="400">
+                            <div class="timeline-year">1998</div>
+                            <div class="timeline-content">Merger of Citicorp and Travelers Group forms Citigroup</div>
+                        </div>
+                    </div>
+                    
+                    <div class="image-block" data-aos="fade-left" data-aos-delay="200">
+                        <img src="https://placehold.co/600x400/0d3b66/white?text=Citibank+History" alt="Citibank History" class="rounded-image">
+                        <div class="stat-cards">
+                            <div class="stat-card" data-aos="zoom-in" data-aos-delay="300">
+                                <div class="stat-number">210+</div>
+                                <div class="stat-label">Years of Service</div>
+                            </div>
+                            <div class="stat-card" data-aos="zoom-in" data-aos-delay="400">
+                                <div class="stat-number">160+</div>
+                                <div class="stat-label">Countries</div>
+                            </div>
+                            <div class="stat-card" data-aos="zoom-in" data-aos-delay="500">
+                                <div class="stat-number">200M+</div>
+                                <div class="stat-label">Customers</div>
+                            </div>
+                        </div>
+                                                <p><a href="https://www.citi.com/" target="_blank" class="btn btn-outline" style="margin: 15px 0;"><i class="fas fa-external-link-alt"></i> Visit Official Citibank Website</a></p>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Corporate Profile -->
+            <section id="corporate-profile" data-aos="fade-up">
+                <h2>Corporate Profile</h2>
+                <div class="grid grid-2">
+                    <div class="image-block" data-aos="fade-right" data-aos-delay="100">
+                        <img src="https://placehold.co/600x400/0d3b66/white?text=Citibank+Corporate" alt="Citibank Corporate" class="rounded-image">
+                    </div>
+                    
+                    <div class="content-block" data-aos="fade-left" data-aos-delay="200">
+                        <p>Citibank is the consumer division of financial services multinational <strong>Citigroup</strong>. The bank has approximately <strong>2,649 branches</strong> in 19 countries, including 723 branches in the United States and 1,494 branches in Mexico operated by its subsidiary Banamex.</p>
+                        
+                        <p>The bank is a leader in multiple sectors, including:</p>
+                        
+                        <div class="feature-list">
+                            <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Consumer Banking</span>
+                            </div>
+                            <div class="feature-item" data-aos="fade-up" data-aos-delay="350">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Credit Cards</span>
+                            </div>
+                            <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Mortgage Lending</span>
+                            </div>
+                            <div class="feature-item" data-aos="fade-up" data-aos-delay="450">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Personal Loans</span>
+                            </div>
+                            <div class="feature-item" data-aos="fade-up" data-aos-delay="500">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Investment Banking</span>
+                            </div>
+                            <div class="feature-item" data-aos="fade-up" data-aos-delay="550">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Wealth Management</span>
+                            </div>
+                        </div>
+                        
+                        <p class="mt-4">The company employs approximately <strong>200,000 staff</strong> worldwide and holds over <strong>$1.7 trillion</strong> in assets, making it one of the largest banking institutions globally.</p>
+                                            <p><a href="https://www.citi.com/" target="_blank" class="btn btn-outline" style="margin: 15px 0;"><i class="fas fa-external-link-alt"></i> Visit Official Citibank Website</a></p>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vision, Mission, Goals, Objectives, Core Values -->
+            <section id="vision-mission">
+                <h2>Vision, Mission, Goals and Objectives, and Core Values</h2>
+                <div>
+                    <h3>Mission Statement</h3>
+                    <p>Citibank's mission is to serve as a trusted partner to its clients by responsibly providing financial services that enable growth and economic progress. This encompasses safeguarding assets, lending money, making payments, and accessing capital markets on behalf of clients. With over 200 years of experience, Citibank connects millions across hundreds of countries and cities, aiming to create the best outcomes for clients and customers through simple, creative, and responsible financial solutions.</p>
+                    
+                    <h3>Vision Statement</h3>
+                    <p>Citibank envisions being the preeminent banking partner for institutions with cross-border needs, a global leader in wealth management, and a valued personal bank in its home market of the United States. This vision underscores its commitment to excellence in consulting, client advocacy, and the delivery of experienced services that exceed client expectations.</p>
+                    
+                    <h3>Goals and Objectives</h3>
+                    <ul>
+                        <li><strong>Digital Transformation:</strong> Accelerating the modernization of banking services to meet the demands of the digital age.</li>
+                        <li><strong>Client-Centric Approach:</strong> Providing personalized financial strategies to foster long-term client relationships.</li>
+                        <li><strong>Sustainable Development:</strong> Committing to environmental and social responsibility, with significant investments in sustainable finance.</li>
+                        <li><strong>Risk Management Optimization:</strong> Enhancing risk management frameworks to ensure prudent financial practices.</li>
+                        <li><strong>Inclusive Financial Services:</strong> Expanding access to financial services to underserved communities worldwide.</li>
+                    </ul>
+                    
+                    <h3>Core Values</h3>
+                    <ul>
+                        <li><strong>Common Purpose:</strong> Operating as one team with the unified goal of serving clients and stakeholders.</li>
+                        <li><strong>Responsible Finance:</strong> Conducting business with transparency, prudence, and dependability.</li>
+                        <li><strong>Ingenuity:</strong> Enhancing clients' lives through innovative solutions that leverage the bank's global network and expertise.</li>
+                        <li><strong>Leadership:</strong> Fostering a culture where talented individuals thrive in a diverse meritocracy that demands excellence and initiative.</li>
+                    </ul>
+                    
+                    <p>These values are integral to Citibank's commitment to ethical practices, client satisfaction, and societal impact.</p>
+                <p><a href="https://www.citigroup.com/global/about-us" target="_blank" class="btn btn-outline" style="margin: 15px 0;"><i class="fas fa-external-link-alt"></i> Visit Official Citibank Website</a></p>
+                </div>
+            </section>
+
+            <!-- Branches and Offices -->
+            <section id="branches">
+                <h2>Branches and Offices</h2>
+                <div>
+                    <p>As of April 2025, Citibank Philippines has transitioned its consumer banking operations to UnionBank of the Philippines. Citibank now focuses on institutional and corporate banking services. Despite this shift, several Citibank branches and offices remain operational to support corporate clients and facilitate bill payment services.</p>
+                    
+                    <h3>Head Office</h3>
+                    <address style="font-style: normal; margin: 10px 0 20px 0;">
+                        <strong>Citi Plaza</strong><br>
+                        34th Street, Bonifacio Global City<br>
+                        Taguig City, Metro Manila 1634, Philippines<br>
+                        <strong>Contact:</strong> +63 2 8802 6000<br>
+                        <strong>Email:</strong> philippines.citiservice@citi.com
+                    </address>
+                    
+                    <h3>Citibank Branches in the Philippines</h3>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
+                        <div style="flex: 1; min-width: 300px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Makati City (Main Branch)</h4>
+                            <address style="font-style: normal;">
+                                Citibank Center<br>
+                                8741 Paseo de Roxas corner Villar Street<br>
+                                Makati City 1200<br>
+                                <strong>Contact:</strong> +63 2 894 7315
+                            </address>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 300px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>San Juan City (Greenhills Branch)</h4>
+                            <address style="font-style: normal;">
+                                22 Fort & Ester Building<br>
+                                Missouri Street, Northeast Greenhills<br>
+                                San Juan City 1502<br>
+                                <strong>Contact:</strong> +63 2 894 7315
+                            </address>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 300px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Cebu City Branch</h4>
+                            <address style="font-style: normal;">
+                                Ground Floor, Ayala Life-FGU Center<br>
+                                Mindanao Avenue corner Biliran Road<br>
+                                Cebu Business Park, Cebu City 6000<br>
+                                <strong>Contact:</strong> +63 32 234 9999<br>
+                                <strong>Hours:</strong> Monday to Friday, 9:00 AM – 3:00 PM
+                            </address>
+                        </div>
+                    </div>
+                    
+                    <h3>Citibank Locations in Northern Mindanao</h3>
+                    <p>In Northern Mindanao, Citibank operates several bill payment centers and affiliated locations:</p>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
+                        <div style="flex: 1; min-width: 300px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Cagayan de Oro</h4>
+                            <address style="font-style: normal;">
+                                Citibank Savings Bank<br>
+                                Cagayan de Oro, Philippines<br>
+                                <strong>Contact:</strong> +63 88 856 2547
+                            </address>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 300px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Valencia, Bukidnon</h4>
+                            <address style="font-style: normal;">
+                                RCBC Bank<br>
+                                Sayre National Highway<br>
+                                Valencia City, 8709 Bukidnon<br>
+                                <strong>Contact:</strong> +63 88 828 2166
+                            </address>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 300px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Ozamiz City</h4>
+                            <address style="font-style: normal;">
+                                <strong>UnionBank:</strong><br>
+                                Ground Floor, Insular Life Building<br>
+                                Don Anselmo Avenue corner Jose Abad Santos Street<br>
+                                Barangay Carmen<br>
+                                <strong>Contact:</strong> +63 88 319 0283
+                            </address>
+                            <address style="font-style: normal; margin-top: 10px;">
+                                <strong>RCBC Bank:</strong><br>
+                                Don Anselmo Bernard Avenue corner Mabini Street<br>
+                                Ozamiz City, 7200 Misamis Occidental<br>
+                                <strong>Contact:</strong> +63 88 521 1311
+                            </address>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 20px;">For a comprehensive list of Citibank locations and services in the Philippines, you can visit their <a href="https://www.citigroup.com/global/about-us/global-presence/philippines" style="color: #0d3b66; text-decoration: none; font-weight: bold;">official global presence page</a>.</p>
+                    <p><a href="https://www.citigroup.com/global/about-us/global-presence/philippines" target="_blank" class="btn btn-outline" style="margin: 15px 0;"><i class="fas fa-external-link-alt"></i> Visit Official Citibank Website</a></p>
+                </div>
+            </section>
+
+            <!-- Scope of Business/Operation -->
+        <section id="operations">
+                <h2>Scope of Business/Operation</h2>
+                <div>
+                    <h3>1. Global Reach</h3>
+                    <ul>
+                        <li>Citibank is a part of Citigroup Inc., one of the largest financial services organizations in the world.</li>
+                        <li>It operates in over 160 countries and jurisdictions, serving more than 200 million customer accounts.</li>
+                        <li>Core markets include the United States, Asia-Pacific, Latin America, Europe, the Middle East, and Africa.</li>
+                    </ul>
+                    
+                    <h3>2. Main Business Segments</h3>
+                    
+                    <h4>Institutional Clients Group (ICG):</h4>
+                    <p>Offers banking services to corporations, financial institutions, governments, and public sector clients.</p>
+                    <ul>
+                        <li>Investment banking</li>
+                        <li>Treasury and trade solutions</li>
+                        <li>Markets and securities services</li>
+                        <li>Corporate lending</li>
+                    </ul>
+                    
+                    <h4>Personal Banking and Wealth Management (PBWM):</h4>
+                    <p>Focuses on retail banking (U.S. only), credit cards, and wealth management solutions.</p>
+                    
+                    <h3>3. Services Offered</h3>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 15px 0;">
+                        <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Retail Banking (in selected regions only)</h4>
+                            <p><em>(In the Philippines, consumer banking services were sold to UnionBank.)</em></p>
+                            <ul>
+                                <li>Checking and savings accounts</li>
+                                <li>Credit cards</li>
+                                <li>Loans and mortgages</li>
+                                <li>Online and mobile banking</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Corporate and Investment Banking</h4>
+                            <ul>
+                                <li>Mergers and acquisitions advisory</li>
+                                <li>Capital raising (debt and equity)</li>
+                                <li>Risk management solutions</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Treasury and Trade Services</h4>
+                            <ul>
+                                <li>Cash management</li>
+                                <li>Trade finance</li>
+                                <li>Commercial cards</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Wealth Management</h4>
+                            <ul>
+                                <li>Investment advisory</li>
+                                <li>Portfolio management</li>
+                                <li>Private banking for high-net-worth clients</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Markets & Securities Services</h4>
+                            <ul>
+                                <li>Foreign exchange</li>
+                                <li>Commodities trading</li>
+                                <li>Securities lending</li>
+                                <li>Prime finance and custody services</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h3>4. Digital and Innovation Initiatives</h3>
+                    <ul>
+                        <li>Strong focus on digital banking, AI, blockchain, and fintech partnerships.</li>
+                        <li>Offers comprehensive mobile banking platforms and online financial tools.</li>
+                        <li>Actively investing in sustainable finance and ESG (Environmental, Social, and Governance) projects.</li>
+                    </ul>
+                    
+                    <h3>5. Regulatory Compliance</h3>
+                    <p>Subject to regulations by global financial authorities including:</p>
+                    <ul>
+                        <li>U.S. Federal Reserve</li>
+                        <li>Securities and Exchange Commission (SEC)</li>
+                        <li>Bangko Sentral ng Pilipinas (for local operations)</li>
+                        <li>Local regulators in every country it operates</li>
+                    </ul>
+                </div>
+                <p><a href="https://www.citigroup.com/global/about-us" target="_blank" class="btn btn-outline" style="margin: 15px 0;"><i class="fas fa-external-link-alt"></i> Visit Official Citibank Website</a></p>
+            </section>
+
+            <!-- Products and Services -->
+        <section id="products">
+                <h2>Products and Services</h2>
+                <div>
+                    <div style="margin-bottom: 30px;">
+                        <h3>1. Personal Banking <span style="font-size: 0.9em; font-weight: normal; color: #666;">(Select Countries Only – Mostly U.S.)</span></h3>
+                        <p><em>(Consumer banking in the Philippines is now under UnionBank)</em></p>
+                        
+                        <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Checking & Savings Accounts</h4>
+                                <ul>
+                                    <li>Debit & ATM Cards</li>
+                                    <li>Time Deposits / Certificates of Deposit</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Loans</h4>
+                                <ul>
+                                    <li>Personal Loans</li>
+                                    <li>Home Loans / Mortgages</li>
+                                    <li>Auto Loans</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Credit Cards</h4>
+                                <ul>
+                                    <li>Cashback cards</li>
+                                    <li>Rewards cards</li>
+                                    <li>Travel cards</li>
+                                    <li>Corporate credit cards</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Online & Mobile Banking</h4>
+                                <ul>
+                                    <li>Bill payments</li>
+                                    <li>Fund transfers</li>
+                                    <li>Account monitoring</li>
+                                    <li>Budget tracking tools</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <h3>2. Wealth Management & Private Banking</h3>
+                        
+                        <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Investment Products</h4>
+                                <ul>
+                                    <li>Mutual funds</li>
+                                    <li>Bonds & equities</li>
+                                    <li>Structured products</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Financial Planning</h4>
+                                <ul>
+                                    <li>Portfolio Management</li>
+                                    <li>Retirement Planning</li>
+                                    <li>Trust & Estate Services</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Insurance Solutions</h4>
+                                <ul>
+                                    <li>Life insurance</li>
+                                    <li>Health and critical illness coverage</li>
+                                    <li>Investment-linked policies</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <h3>3. Corporate & Institutional Banking</h3>
+                        
+                        <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Commercial Loans</h4>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Trade Finance</h4>
+                                <ul>
+                                    <li>Import/export financing</li>
+                                    <li>Letters of credit</li>
+                                    <li>Bank guarantees</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Cash Management</h4>
+                                <ul>
+                                    <li>Payroll services</li>
+                                    <li>Payment solutions</li>
+                                    <li>Receivables management</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Treasury & Trade Solutions</h4>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Merchant Services</h4>
+                                <ul>
+                                    <li>Payment gateways</li>
+                                    <li>POS terminals</li>
+                                    <li>E-commerce integrations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <h3>4. Investment Banking</h3>
+                        
+                        <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Mergers & Acquisitions (M&A) Advisory</h4>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Capital Markets Access</h4>
+                                <ul>
+                                    <li>Equity capital raising (IPOs)</li>
+                                    <li>Debt issuance (bonds, notes)</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Financial Advisory Services</h4>
+                                <ul>
+                                    <li>Underwriting Services</li>
+                                    <li>Risk Advisory Services</li>
+                                    <li>Strategic Financial Advisory</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <h3>5. Markets & Securities Services</h3>
+                        
+                        <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Trading Services</h4>
+                                <ul>
+                                    <li>Foreign Exchange (FX) Trading</li>
+                                    <li>Commodities</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Securities Services</h4>
+                                <ul>
+                                    <li>Securities Lending</li>
+                                    <li>Custody and Fund Services</li>
+                                    <li>Prime Brokerage</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <h3>6. Digital Banking & Fintech Services</h3>
+                        
+                        <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Digital Banking Solutions</h4>
+                                <ul>
+                                    <li>Mobile App with AI-based Insights</li>
+                                    <li>24/7 Customer Support via Chatbots</li>
+                                    <li>Digital Onboarding and e-KYC</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Innovation & Sustainability</h4>
+                                <ul>
+                                    <li>Partnerships with Fintech Startups</li>
+                                    <li>Sustainable Finance & ESG Investing Tools</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p><a href="https://www.citigroup.com/global/businesses/services" target="_blank" class="btn btn-outline" style="margin: 15px 0;"><i class="fas fa-external-link-alt"></i> Visit Official Citibank Website</a></p>
+            </section>
+
+            <!-- Operational/Financial Highlights -->
+            <section id="financial-highlights">
+                <h2>Operational/Financial Highlights</h2>
+                <div>
+                    <h3>Financial Performance (2024)</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 15px 0 30px 0;">
+                        <div style="flex: 1; min-width: 220px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center;">
+                            <h4>Revenue</h4>
+                            <p style="font-size: 1.8em; font-weight: bold; color: #0d3b66; margin: 10px 0;">$81.1B</p>
+                            <p>3.4% increase from $78.5B in 2023</p>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 220px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center;">
+                            <h4>Net Income</h4>
+                            <p style="font-size: 1.8em; font-weight: bold; color: #0d3b66; margin: 10px 0;">$12.7B</p>
+                            <p>37% increase from $9.2B in 2023</p>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 220px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center;">
+                            <h4>Total Assets</h4>
+                            <p style="font-size: 1.8em; font-weight: bold; color: #0d3b66; margin: 10px 0;">$2.35T</p>
+                            <p>Slightly down from $2.41T in 2023</p>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 220px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center;">
+                            <h4>ROTCE</h4>
+                            <p style="font-size: 1.8em; font-weight: bold; color: #0d3b66; margin: 10px 0;">7%</p>
+                            <p>Below target and lagging behind competitors</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Operational Developments</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 15px 0 30px 0;">
+                        <div style="flex: 1; min-width: 300px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Restructuring Efforts</h4>
+                            <p>In January 2024, Citigroup announced a reduction of 20,000 jobs as part of a comprehensive restructuring plan aimed at enhancing efficiency and addressing compliance issues.</p>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 300px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Digital Transformation</h4>
+                            <p>Citigroup launched AI tools, including "Citi Assist" and "Citi Stylus," for approximately 140,000 employees across eight countries. These tools are designed to simplify work processes and increase productivity.</p>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 300px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Leadership Promotions</h4>
+                            <p>In November 2024, Citigroup promoted 344 employees to managing director positions—the largest class under CEO Jane Fraser. This move supports the bank's ongoing transformation and modernization efforts.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Strategic Shifts</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 15px 0;">
+                        <div style="flex: 1; min-width: 300px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Consumer Banking Exit</h4>
+                            <p>Citigroup continued its strategy to exit consumer banking operations in several markets, including the Philippines, focusing instead on institutional and corporate banking services.</p>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 300px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Technology Infrastructure</h4>
+                            <p>The bank announced plans to migrate significant portions of its financial infrastructure to Google Cloud, aiming to enhance operational efficiency and leverage advanced technologies.</p>
+                        </div>
+                    </div>
+                </div>
+                <p><a href="https://www.citigroup.com/global/investors/annual-reports-and-proxy-statements" target="_blank" class="btn btn-outline" style="margin: 15px 0;"><i class="fas fa-external-link-alt"></i> Visit Official Citibank Website</a></p>
+            </section>
+
+            <!-- Awards and Recognitions -->
+            <section id="awards">
+                <h2>Awards and Recognitions</h2>
+                <div>
+                    <p>Here is a summary of Citibank's major awards and recognitions from 2020 to 2024, highlighting its excellence in digital banking, investment services, and regional leadership:</p>
+                    
+                    <div style="margin-top: 25px;">
+                        <h3 style="background-color: #0d3b66; color: white; padding: 10px 15px; border-radius: 5px;">2024 Highlights</h3>
+                        <div style="background-color: white; padding: 20px; border-radius: 5px; margin-top: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>41 Awards at Euromoney Awards for Excellence:</h4>
+                            <ul>
+                                <li>World's Best Digital Bank</li>
+                                <li>World's Best Investment Bank in Emerging Markets (second consecutive year)</li>
+                                <li>Asia's Best Bank for Financing</li>
+                                <li>Asia's Best Investment Bank</li>
+                                <li>Africa's Best Investment Bank</li>
+                                <li>CEE's Best Investment Bank</li>
+                                <li>Best Bank for Diversity and Inclusion in the Philippines, China, Malaysia, and Vietnam</li>
+                                <li>Best International Bank in countries including Japan, Indonesia, and the Dominican Republic</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 25px;">
+                        <h3 style="background-color: #0d3b66; color: white; padding: 10px 15px; border-radius: 5px;">2023 Highlights</h3>
+                        <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 15px;">
+                            <div style="flex: 1; min-width: 300px; background-color: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Global Finance Magazine:</h4>
+                                <ul>
+                                    <li>World's Best Digital Bank (22nd consecutive year)</li>
+                                    <li>Best Corporate/Institutional Digital Bank</li>
+                                    <li>Recognized for innovations in online cash management, treasury services, mobile banking, and open banking APIs</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 300px; background-color: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Euromoney Awards:</h4>
+                                <ul>
+                                    <li>Best Payments and Treasury Bank</li>
+                                    <li>Best Securities Services Bank</li>
+                                    <li>Best Investment Bank in Emerging Markets</li>
+                                    <li>Regional accolades in Africa, Asia, Latin America, and the Middle East</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="flex: 1; min-width: 300px; background-color: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                                <h4>Asiamoney Best Bank Awards:</h4>
+                                <ul>
+                                    <li>Best International Bank in the Philippines (fifth-time winner)</li>
+                                </ul>
+                                
+                                <h4>Digital Banker's Digital CX Awards:</h4>
+                                <ul>
+                                    <li>World's Best Transaction Bank for Digital CX</li>
+                                    <li>Outstanding Digital CX – Bank Cards</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 25px;">
+                        <h3 style="background-color: #0d3b66; color: white; padding: 10px 15px; border-radius: 5px;">2022 Highlights</h3>
+                        <div style="background-color: white; padding: 20px; border-radius: 5px; margin-top: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Euromoney Awards:</h4>
+                            <ul>
+                                <li>Best Bank in Asia</li>
+                                <li>Best Bank for Financing in Asia</li>
+                                <li>Best Bank for Transaction Services in Asia</li>
+                            </ul>
+                            <p style="margin-top: 10px;">Citi raised over US$200 billion from global capital markets for Asia Pacific clients, including around US$30 billion via ESG financings.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 25px;">
+                        <h3 style="background-color: #0d3b66; color: white; padding: 10px 15px; border-radius: 5px;">2021 Highlights</h3>
+                        <div style="background-color: white; padding: 20px; border-radius: 5px; margin-top: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Global Finance Magazine:</h4>
+                            <ul>
+                                <li>Best Digital Bank in multiple countries and regions, continuing its leadership in digital banking solutions.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 25px;">
+                        <h3 style="background-color: #0d3b66; color: white; padding: 10px 15px; border-radius: 5px;">2020 Highlights</h3>
+                        <div style="background-color: white; padding: 20px; border-radius: 5px; margin-top: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Global Finance Magazine:</h4>
+                            <ul>
+                                <li>Best Corporate Digital Bank and Best Consumer Digital Bank in the Philippines</li>
+                                <li>Best Online Cash Management Services in Asia Pacific</li>
+                                <li>Best Online Treasury Services</li>
+                                <li>Best Mobile Adaptive Site</li>
+                                <li>Best Mobile Banking App</li>
+                                <li>Best Open Banking APIs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <p><a href="https://www.citigroup.com/" target="_blank" class="btn btn-outline" style="margin: 15px 0;"><i class="fas fa-external-link-alt"></i> Visit Official Citibank Website</a></p>
+            </section>
+
+            <!-- Organizational Structure -->
+        <section id="structure">
+                <h2>Organizational Structure</h2>
+                <div>
+                    <p>As of 2025, Citibank (operating under Citigroup Inc.) has implemented a streamlined organizational structure aimed at enhancing efficiency, accountability, and client service. This transformation, initiated in 2023 under CEO Jane Fraser, represents the most significant overhaul since the 2008 financial crisis.</p>
+                    
+                    <h3>Executive Management Team</h3>
+                    <p>The Executive Management Team, reporting directly to CEO Jane Fraser, comprises leaders overseeing key business segments and corporate functions:</p>
+                    
+                    <div style="overflow-x: auto; margin: 20px 0;">
+                        <table style="width: 100%; min-width: 600px;">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Jane Fraser</td>
+                                    <td>Chief Executive Officer</td>
+                                </tr>
+                                <tr>
+                                    <td>Shahmir Khaliq</td>
+                                    <td>Head of Services</td>
+                                </tr>
+                                <tr>
+                                    <td>Andrew Morton</td>
+                                    <td>Head of Markets</td>
+                                </tr>
+                                <tr>
+                                    <td>Vis Raghavan</td>
+                                    <td>Head of Banking and Executive Vice Chair</td>
+                                </tr>
+                                <tr>
+                                    <td>Andy Sieg</td>
+                                    <td>Head of Wealth</td>
+                                </tr>
+                                <tr>
+                                    <td>Gonzalo Luchetti</td>
+                                    <td>Head of U.S. Personal Banking</td>
+                                </tr>
+                                <tr>
+                                    <td>David Livingstone</td>
+                                    <td>Chief Client Officer</td>
+                                </tr>
+                                <tr>
+                                    <td>Ernesto Torres Cantú</td>
+                                    <td>Head of International</td>
+                                </tr>
+                                <tr>
+                                    <td>Mark Mason</td>
+                                    <td>Chief Financial Officer</td>
+                                </tr>
+                                <tr>
+                                    <td>Anand Selvakesari</td>
+                                    <td>Chief Operating Officer</td>
+                                </tr>
+                                <tr>
+                                    <td>Brent McIntosh</td>
+                                    <td>Chief Legal Officer & Corporate Secretary</td>
+                                </tr>
+                                <tr>
+                                    <td>Zdenek Turek</td>
+                                    <td>Chief Risk Officer</td>
+                                </tr>
+                                <tr>
+                                    <td>Sara Wechter</td>
+                                    <td>Chief Human Resources Officer</td>
+                                </tr>
+                                <tr>
+                                    <td>Sunil Garg</td>
+                                    <td>CEO of Citibank, N.A. and Head of North America</td>
+                                </tr>
+                                <tr>
+                                    <td>Edward Skyler</td>
+                                    <td>Head of Enterprise Services & Public Affairs</td>
+                                </tr>
+                                <tr>
+                                    <td>Nadir Darrah</td>
+                                    <td>Chief Auditor</td>
+                                </tr>
+                                <tr>
+                                    <td>Tim Ryan</td>
+                                    <td>Head of Technology and Business Enablement</td>
+                                </tr>
+                                <tr>
+                                    <td>Margo Pilic</td>
+                                    <td>Chief of Staff | Office of the CEO</td>
+                                </tr>
+                                <tr>
+                                    <td>Paco Ybarra</td>
+                                    <td>Senior Advisor</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h3>Five Core Business Segments</h3>
+                    <p>Citibank's operations are organized into five primary business segments, each led by an executive reporting directly to the CEO:</p>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                        <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Services</h4>
+                            <p><strong>Led by:</strong> Shahmir Khaliq</p>
+                            <p>Encompasses Treasury and Trade Solutions, and Securities Services.</p>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Markets</h4>
+                            <p><strong>Led by:</strong> Andrew Morton</p>
+                            <p>Focusing on trading and market-making activities.</p>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Banking</h4>
+                            <p><strong>Led by:</strong> Vis Raghavan</p>
+                            <p>Covering Investment Banking, Corporate Banking, and Commercial Banking.</p>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Wealth</h4>
+                            <p><strong>Led by:</strong> Andy Sieg</p>
+                            <p>Providing wealth management services.</p>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>U.S. Personal Banking</h4>
+                            <p><strong>Led by:</strong> Gonzalo Luchetti</p>
+                            <p>Serving retail banking customers in the United States.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Structural Simplification</h3>
+                    <p>The reorganization eliminated previous management layers, including the Personal Banking & Wealth Management and Institutional Clients Group divisions, as well as regional layers in Asia Pacific, Europe, Middle East and Africa, and Latin America. This flatter structure aims to accelerate decision-making and enhance client focus.</p>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                        <div style="flex: 1; min-width: 300px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>International Operations</h4>
+                            <p>Leadership of geographies outside North America is consolidated under Ernesto Torres Cantú, Head of International. This role focuses on local-market client coverage, delivery, and legal entity management, promoting greater connectivity across Citi's global operations.</p>
+                        </div>
+                        
+                        <div style="flex: 1; min-width: 300px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <h4>Client Organization</h4>
+                            <p>A newly established Client organization, led by Chief Client Officer David Livingstone, is responsible for strengthening client engagement and experience across all business lines and regions.</p>
+                        </div>
+                    </div>
+                    
+                    <p>This organizational structure reflects Citibank's strategic focus on simplifying operations, enhancing accountability, and delivering superior client service.</p>
+                </div>
+                <p><a href="https://www.citigroup.com/global/about-us/global-presence/philippines" target="_blank" class="btn btn-outline" style="margin: 15px 0;"><i class="fas fa-external-link-alt"></i> Visit Official Citibank Website</a></p>
+            </section>
+
+            <!-- Board of Directors -->
+            <section id="board">
+                <h2>Board of Directors</h2>
+                <div>
+                    <p>As of April 2025, Citigroup Inc.'s Board of Directors comprises a diverse group of leaders with extensive experience in finance, regulation, academia, and global business. The Board oversees Citigroup's strategic direction, risk management, and corporate governance. Recent changes include the retirement of Barbara Desoer and S. Leslie Ireland, and the election of Titi Cole.</p>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 25px; margin-top: 25px; justify-content: center;">
+                        <div class="profile-card">
+                            <div class="profile-img" style="background-image: url('https://www.citigroup.com/rcs/v1/siteIds/citigpa/asset/132/176/65f8318b5ed337150d4791c7.jpg'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                            <h3>John C. Dugan</h3>
+                            <p><strong>Chair, Citigroup Inc.</strong></p>
+                            <p>Former U.S. Comptroller of the Currency, bringing regulatory expertise to the Board.</p>
+                        </div>
+                        
+                        <div class="profile-card">
+                            <div class="profile-img" style="background-image: url('https://www.citigroup.com/rcs/v1/siteIds/citigpa/asset/132/176/66aa4183ea5e6b6b4d1339af.jpg'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                            <h3>Jane Fraser</h3>
+                            <p><strong>Chief Executive Officer</strong></p>
+                            <p>Appointed CEO in 2021, she is the first woman to lead a major U.S. bank.</p>
+                        </div>
+                        
+                        <div class="profile-card">
+                            <div class="profile-img" style="background-image: url('https://www.citigroup.com/rcs/v1/siteIds/citigpa/asset/132/176/67ebf649656129542b7466a5.jpg'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                            <h3>Titi Cole</h3>
+                            <p><strong>Former Head of Legacy Franchises</strong></p>
+                            <p>Elected to the Board in January 2025, she has over 30 years of experience in financial services.</p>
+                        </div>
+                        
+                        <div class="profile-card">
+                            <div class="profile-img" style="background-image: url('https://www.citigroup.com/rcs/v1/siteIds/citigpa/asset/132/176/65f81ee0519e1e1718328929.jpg'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                            <h3>Ellen M. Costello</h3>
+                            <p><strong>Former President and CEO, BMO Financial Corporation</strong></p>
+                            <p>Brings extensive banking experience to the Board.</p>
+                        </div>
+                        
+                        <div class="profile-card">
+                            <div class="profile-img" style="background-image: url('https://www.citigroup.com/rcs/v1/siteIds/citigpa/asset/132/176/65f820b65ed337150d4791a1.jpg'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                            <h3>Grace E. Dailey</h3>
+                            <p><strong>Former Senior Deputy Comptroller</strong></p>
+                            <p>Provides regulatory and supervisory insight from the Office of the Comptroller of the Currency.</p>
+                        </div>
+                        
+                        <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://www.citigroup.com/rcs/v1/siteIds/citigpa/asset/132/176/65f8358a074270118aceffce.jpg'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Duncan P. Hennes</h3>
+                        <p><strong>Co-Founder and Partner, Atrevida Partners</strong></p>
+                        <p>Offers expertise in asset management and financial services.</p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://www.citigroup.com/rcs/v1/siteIds/citigpa/asset/132/176/65f83728519e1e1718328974.jpg'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Peter Blair Henry</h3>
+                        <p><strong>Senior Fellow, Stanford University</strong></p>
+                        <p>An economist with a focus on global economic policy.</p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://www.citigroup.com/rcs/v1/siteIds/citigpa/asset/132/176/65f820295ed337150d479194.jpg'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Gary M. Reiner</h3>
+                        <p><strong>Operating Partner, General Atlantic LLC</strong></p>
+                        <p>Former CIO at General Electric, contributing technology and operational experience.</p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://www.citigroup.com/rcs/v1/siteIds/citigpa/asset/132/176/65f8214fca93067fe39cb660.jpg'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>James S. Turley</h3>
+                        <p><strong>Former Chairman and CEO, Ernst & Young</strong></p>
+                        <p>Brings auditing and financial oversight expertise.</p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://www.citigroup.com/rcs/v1/siteIds/citigpa/asset/132/176/65f835eeca93067fe39cb6a9.jpg'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Diana L. Taylor</h3>
+                        <p><strong>Former Superintendent of Banks, State of New York</strong></p>
+                        <p>Provides experience in banking regulation and public service.</p>
+                    </div>
+                </div>
+            </div>
+            <p><a href="https://www.citigroup.com/global/about-us/leadership" target="_blank" class="btn btn-outline" style="margin: 15px 0;"><i class="fas fa-external-link-alt"></i> Visit Official Citibank Website</a></p>
+        </section>
+
+        <!-- Management Committee -->
+        <section id="management">
+            <h2>Management Committee</h2>
+            <div>
+                <p>As of April 2025, Citigroup Inc.'s Management Committee—formally known as the Executive Management Team—comprises senior leaders responsible for the strategic direction and day-to-day operations of the company. This team reflects Citigroup's streamlined organizational structure, emphasizing accountability and client-centricity.</p>
+                
+                <div style="display: flex; flex-wrap: wrap; gap: 25px; margin-top: 25px; justify-content: center;">
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://www.citigroup.com/rcs/v1/siteIds/citigpa/asset/66a91de5ea5e6b6b4d133841.jpg'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Jane Fraser</h3>
+                        <p><strong>Chief Executive Officer</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuNc3F3Qu7auKM5oz8yvE2rC83bmHAxEenKw&s'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Shahmir Khaliq</h3>
+                        <p><strong>Head of Services</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTaYgypA2oQXcEZQ-QQHhad5pXLTftHUTbpw&s'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Andrew Morton</h3>
+                        <p><strong>Head of Markets</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://www.citigroup.com/rcs/v1/siteIds/citigpa/asset/667c1684e883b02f839ab71b.jpg'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;"   >Profile Image</div>
+                        <h3>Vis Raghavan</h3>
+                        <p><strong>Head of Banking and Executive Vice Chair</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://cdn-res.keymedia.com/cdn-cgi/image/w=1000,h=600,f=auto/https://cdn-res.keymedia.com/investmentnews/uploads/2023/03/AndrewSieg.jpg'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Andy Sieg</h3>
+                        <p><strong>Head of Wealth</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRL3XLZzNGPZTXszYehMCkD_VHuiLUkNsFKbg&s'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Gonzalo Luchetti</h3>
+                        <p><strong>Head of U.S. Personal Banking</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMGiSETwXOteSU30e3AjPV9l-gwqRFWtP7ug&s'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>David Livingstone</h3>
+                        <p><strong>Chief Client Officer</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTY8Ae4KExK_rGhy9cxx7CNTf5r0p1-yBAfw&s'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Ernesto Torres Cantú</h3>
+                        <p><strong>Head of International</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://www.citigroup.com/rcs/v1/siteIds/citigpa/asset/67292cd9b4a4627f32cdf923.jpg'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Mark Mason</h3>
+                        <p><strong>Chief Financial Officer</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRizzuQuV0kRtLbSDGcwdY3JbQWoRX9Er1LdQ&s'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Anand Selvakesari</h3>
+                        <p><strong>Chief Operating Officer</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAbXQQ14oOsiFnWFDS8la1VM3hkvq39ef1Mw&s'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Brent McIntosh</h3>
+                        <p><strong>Chief Legal Officer & Corporate Secretary</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-TIkHy52mM4g81o7ZacHspf2eyqear39I9Q&s'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Zdenek Turek</h3>
+                        <p><strong>Chief Risk Officer</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://media.licdn.com/dms/image/v2/C4D03AQFYja5mE-RX0w/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1580919962248?e=2147483647&v=beta&t=j9diI61D4SBxW1r8RwDi7fdGhc5VUwlpJsq9fsuhozw'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Sara Wechter</h3>
+                        <p><strong>Chief Human Resources Officer</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRABfcRLqXdUcDN8TsjsY_8TFu8zLdlRy5MyA&s'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Sunil Garg</h3>
+                        <p><strong>CEO of Citibank, N.A. and Head of North America</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://media.licdn.com/dms/image/v2/C4E03AQHejpDLrX6DDw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1635880513800?e=2147483647&v=beta&t=OC3vToSKTbQRrrIhGZEAER4OCrimZWuC_ZKjHMVc0yk'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Edward Skyler</h3>
+                        <p><strong>Head of Enterprise Services & Public Affairs</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTz9qjyucWp5C2sQcmYwVJ3G1ABr-uO30stYg&s'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Nadir Darrah</h3>
+                        <p><strong>Chief Auditor</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgBUnS96RruwbjPaHb8PUq72VMKQ3dlRvjKA&s'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Tim Ryan</h3>
+                        <p><strong>Head of Technology and Business Enablement</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqK3tyweKy3s93vtczqYrW7MFt7_ypOo8P1w&s'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Margo Pilic</h3>
+                        <p><strong>Chief of Staff, Office of the CEO</strong></p>
+                    </div>
+                    
+                    <div class="profile-card">
+                        <div class="profile-img" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlQ-YnhJ0k2eAA6VVfiASzHskOkx6Fg-r91Q&s'); background-size: cover; display: flex; align-items: center; justify-content: center; color: transparent;">Profile Image</div>
+                        <h3>Paco Ybarra</h3>
+                        <p><strong>Senior Advisor</strong></p>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;">This team structure supports Citigroup's focus on delivering comprehensive financial services and maintaining robust governance across its global operations.</p>
+            </div>
+            <p><a href="https://www.citigroup.com/global/about-us/leadership" target="_blank" class="btn btn-outline" style="margin: 15px 0;"><i class="fas fa-external-link-alt"></i> Visit Official Citibank Website</a></p>
+        </section>
+
+        <!-- Capital Structure and Adequacy -->
+        <section id="capital-structure">
+            <h2>Capital Structure and Adequacy</h2>
+            <div>
+                <p>As of April 2025, Citigroup Inc. maintains a robust capital structure, reflecting its strategic focus on financial strength, regulatory compliance, and shareholder value.</p>
+                
+                <h3>Capital Adequacy</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 15px 0 30px 0;">
+                    <div style="flex: 1; min-width: 220px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4>Common Equity Tier 1 (CET1) Ratio</h4>
+                        <p style="font-size: 1.8em; font-weight: bold; color: #0d3b66; margin: 10px 0;">13.4%</p>
+                        <p>Approximately 130 basis points above the current regulatory minimum</p>
+                        <p>Slight decrease from 13.6% in the previous quarter</p>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 220px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4>Supplementary Leverage Ratio (SLR)</h4>
+                        <p style="font-size: 1.8em; font-weight: bold; color: #0d3b66; margin: 10px 0;">5.8%</p>
+                        <p>Remained steady, indicating a strong leverage position</p>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 220px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4>Return on Tangible Common Equity</h4>
+                        <p style="font-size: 1.8em; font-weight: bold; color: #0d3b66; margin: 10px 0;">9.1%</p>
+                        <p>Up from 7.6% in Q1 2024</p>
+                        <p>Moving closer to medium-term target of 10%–11%</p>
+                    </div>
+                </div>
+                
+                <h3>Capital Structure Components</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 15px 0 30px 0;">
+                    <div style="flex: 1; min-width: 300px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4>Equity</h4>
+                        <ul>
+                            <li><strong>Book value per share:</strong> $103.90 (5% increase year-over-year)</li>
+                            <li><strong>Tangible book value per share:</strong> $91.52 (6% increase year-over-year)</li>
+                            <li>Gains driven by higher net income, share repurchases, and favorable AOCI movements</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 300px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4>Debt Management</h4>
+                        <p>In line with its strategy to optimize capital structure, Citigroup announced multiple note redemptions:</p>
+                        <ul>
+                            <li>$1.75 billion of 3.290% Fixed Rate/Floating Rate Notes due 2026</li>
+                            <li>$500 million of Floating Rate Notes due 2026 (March 2025)</li>
+                            <li>$3.5 billion of 3.106% Fixed Rate/Floating Rate Notes due 2026 (April 2025)</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 300px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4>Preferred Stock</h4>
+                        <p>Citigroup announced the full redemption of its Series P Preferred Stock:</p>
+                        <ul>
+                            <li>Redemption date: May 15, 2025</li>
+                            <li>Holders of record on May 5, 2025, will receive the previously declared regular semi-annual dividend of $29.75 per Depositary Share</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3>Regulatory Stress Testing</h3>
+                <div style="background-color: white; padding: 20px; border-radius: 5px; margin: 15px 0 30px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <p>Citigroup successfully passed the Federal Reserve's 2024 Comprehensive Capital Analysis and Review (CCAR), leading to a reduction in its capital ratio requirement from 12.3% to 12.1%. This outcome reflects the bank's improved risk profile and capital planning.</p>
+                </div>
+                
+                <h3>Capital Return to Shareholders</h3>
+                <div style="background-color: white; padding: 20px; border-radius: 5px; margin: 15px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <p>In Q1 2025, Citigroup returned approximately $2.8 billion to common shareholders through dividends and share repurchases. This continued commitment to shareholder returns underscores the bank's confidence in its capital position.</p>
+                </div>
+                
+                <p>Citigroup's capital structure and adequacy as of April 2025 demonstrate a strong financial foundation, strategic debt management, and a commitment to delivering value to shareholders while maintaining regulatory compliance.</p>
+            </div>
+            <p><a href="https://www.citigroup.com/global/investors/capital-structure-and-adequacy" target="_blank" class="btn btn-outline" style="margin: 15px 0;"><i class="fas fa-external-link-alt"></i> Visit Official Citibank Website</a></p>
+        </section>
+
+        <!-- Corporate Governance -->
+        <section id="governance">
+            <h2>Corporate Governance</h2>
+            <div>
+                <p>You can access Citigroup Inc.'s corporate governance information through their official website. This resource provides comprehensive details on the company's governance structure, policies, and practices.</p>
+                
+                <h3>Key Corporate Governance Resources:</h3>
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                    <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4>Corporate Governance Guidelines</h4>
+                        <p>Outlines the principles and practices guiding Citigroup's governance framework.</p>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4>Board of Directors and Committees</h4>
+                        <p>Provides information on the composition and responsibilities of the Board and its committees.</p>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4>Code of Conduct</h4>
+                        <p>Details the ethical standards and expectations for employees and directors.</p>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4>By-Laws and Certificate of Incorporation</h4>
+                        <p>Contains the foundational legal documents governing Citigroup's operations.</p>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 250px; background-color: white; padding: 15px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4>Environmental, Social, and Governance (ESG) Reporting</h4>
+                        <p>Presents the company's ESG initiatives and performance metrics.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; text-align: center;">
+                    <p>For a direct link to Citigroup's Corporate Governance page, please visit:</p>
+                    <a href="https://www.citigroup.com/global/investors/corporate-governance" target="_blank" style="display: inline-block; margin-top: 10px; padding: 12px 25px; background-color: #0d3b66; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">Citigroup Corporate Governance</a>
+                    <p style="margin-top: 15px;">This page serves as a central hub for stakeholders seeking information on Citigroup's commitment to transparency, accountability, and ethical conduct.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Corporate Social Responsibility -->
+        <section id="csr">
+            <h2>Corporate Social Responsibility</h2>
+            <div>
+                <p>As of 2025, Citigroup Inc. continues to demonstrate its commitment to corporate social responsibility (CSR) through a variety of initiatives that address economic inclusion, environmental sustainability, community development, and access to essential services.</p>
+                
+                <div style="margin-top: 25px;">
+                    <div style="background-color: white; padding: 20px; border-radius: 5px; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h3>🌍 2025 Global Innovation Challenge – Youth Employability</h3>
+                        <p>The Citi Foundation has launched the 2025 Global Innovation Challenge, providing $500,000 grants to 50 community organizations worldwide. This initiative aims to accelerate youth employability by supporting programs focused on upskilling, entrepreneurship, and financial education for low-income youth. Building on the success of the Pathways to Progress initiative, which has invested over $300 million to support more than one million young people globally, this challenge underscores Citi's commitment to empowering the next generation.</p>
+                    </div>
+                    
+                    <div style="background-color: white; padding: 20px; border-radius: 5px; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h3>🏘️ Affordable Housing and Homelessness Solutions</h3>
+                        <p>In 2024, the Citi Foundation's Global Innovation Challenge addressed homelessness by awarding $25 million in grants to 50 nonprofit organizations. These funds support innovative solutions to housing insecurity, including the development of affordable housing projects with green building certifications. Citi has also financed and facilitated over $30 billion toward affordable housing globally between 2020 and 2022, demonstrating a sustained commitment to housing stability.</p>
+                    </div>
+                    
+                    <div style="background-color: white; padding: 20px; border-radius: 5px; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h3>🌱 Sustainable Progress Strategy</h3>
+                        <p>Citi's 2025 Sustainable Progress Strategy includes a $250 billion Environmental Finance Goal over five years. This strategy focuses on financing projects in renewable energy, clean technology, sustainable transportation, and more. By supporting clients in transitioning to low-carbon business models, Citi aims to drive environmental sustainability and economic growth.</p>
+                    </div>
+                    
+                    <div style="background-color: white; padding: 20px; border-radius: 5px; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h3>🏥 CITI Cares – Community Health Initiatives</h3>
+                        <p>Through the CITI Cares program, Citi engages in various community health initiatives, such as establishing malnutrition-free villages for women and children and organizing free eye checkup camps for the elderly. These efforts reflect Citi's dedication to improving health outcomes and supporting vulnerable populations in the communities it serves.</p>
+                    </div>
+                    
+                    <div style="background-color: white; padding: 20px; border-radius: 5px; margin-bottom: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h3>💼 Social Finance Expansion in Asia</h3>
+                        <p>Citi anticipates a more than 10% increase in social finance funding in Asia for 2025. This growth encompasses various financing types, including social trade loans, co-financing partnerships with development agencies, and support for social enterprises. By expanding social finance, Citi aims to address pressing social issues and promote inclusive economic development across the region.</p>
+                    </div>
+                </div>
+                
+                <p>These initiatives exemplify Citi's multifaceted approach to corporate social responsibility, integrating economic empowerment, environmental stewardship, and community well-being into its global operations.</p>
+            </div>
+            <p><a href="https://www.citigroup.com/global/our-impact/sustainability" target="_blank" class="btn btn-outline" style="margin: 15px 0;"><i class="fas fa-external-link-alt"></i> Visit Official Citibank Website</a></p>
+        </section>
+
+        <!-- Financial Statement Report -->
+        <section id="financial-report">
+            <h2>Financial Statement Report</h2>
+            <div>
+                <p>Here is a summary of Citigroup Inc.'s financial performance over the past three fiscal years (2022–2024), based on the company's official annual reports and earnings disclosures:</p>
+                
+                <h3>Citigroup Financial Highlights (2022–2024)</h3>
+                
+                <div style="overflow-x: auto; margin: 20px 0;">
+                    <table style="width: 100%; min-width: 600px;">
+                        <thead>
+                            <tr style="background-color: #0d3b66; color: white;">
+                                <th style="padding: 12px 15px; text-align: left;">Metric</th>
+                                <th style="padding: 12px 15px; text-align: center;">2022</th>
+                                <th style="padding: 12px 15px; text-align: center;">2023</th>
+                                <th style="padding: 12px 15px; text-align: center;">2024</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px 15px; font-weight: bold;">Revenue</td>
+                                <td style="padding: 12px 15px; text-align: center;">$75.3 billion</td>
+                                <td style="padding: 12px 15px; text-align: center;">$78.5 billion</td>
+                                <td style="padding: 12px 15px; text-align: center;">$81.1 billion</td>
+                            </tr>
+                            <tr style="background-color: #f2f2f2;">
+                                <td style="padding: 12px 15px; font-weight: bold;">Net Income</td>
+                                <td style="padding: 12px 15px; text-align: center;">$14.8 billion</td>
+                                <td style="padding: 12px 15px; text-align: center;">$9.2 billion</td>
+                                <td style="padding: 12px 15px; text-align: center;">$12.7 billion</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 15px; font-weight: bold;">Return on Tangible Common Equity (RoTCE)</td>
+                                <td style="padding: 12px 15px; text-align: center;">8.9%</td>
+                                <td style="padding: 12px 15px; text-align: center;">4.9%</td>
+                                <td style="padding: 12px 15px; text-align: center;">7.0%</td>
+                            </tr>
+                            <tr style="background-color: #f2f2f2;">
+                                <td style="padding: 12px 15px; font-weight: bold;">Common Equity Tier 1 (CET1) Ratio</td>
+                                <td style="padding: 12px 15px; text-align: center;">13.0%</td>
+                                <td style="padding: 12px 15px; text-align: center;">13.4%</td>
+                                <td style="padding: 12px 15px; text-align: center;">13.4%</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px 15px; font-weight: bold;">Total Assets</td>
+                                <td style="padding: 12px 15px; text-align: center;">$2.416 trillion</td>
+                                <td style="padding: 12px 15px; text-align: center;">$2.412 trillion</td>
+                                <td style="padding: 12px 15px; text-align: center;">$2.353 trillion</td>
+                            </tr>
+                            <tr style="background-color: #f2f2f2;">
+                                <td style="padding: 12px 15px; font-weight: bold;">Capital Returned to Shareholders</td>
+                                <td style="padding: 12px 15px; text-align: center;">~$7 billion</td>
+                                <td style="padding: 12px 15px; text-align: center;">~$6 billion</td>
+                                <td style="padding: 12px 15px; text-align: center;">~$7 billion</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Annual Performance Overview</h3>
+                
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                    <div style="flex: 1; min-width: 300px; background-color: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4>2024</h4>
+                        <ul>
+                            <li><strong>Revenue:</strong> $81.1 billion, the highest since 2010</li>
+                            <li><strong>Net Income:</strong> $12.7 billion, a 37% increase from 2023</li>
+                            <li><strong>RoTCE:</strong> 7.0%</li>
+                            <li><strong>Capital Returned:</strong> Nearly $7 billion to common shareholders</li>
+                            <li><strong>CET1 Ratio:</strong> 13.4%</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 300px; background-color: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4>2023</h4>
+                        <ul>
+                            <li><strong>Revenue:</strong> $78.5 billion</li>
+                            <li><strong>Net Income:</strong> $9.2 billion</li>
+                            <li><strong>RoTCE:</strong> 4.9%</li>
+                            <li><strong>Capital Returned:</strong> Approximately $6 billion to shareholders</li>
+                            <li><strong>CET1 Ratio:</strong> 13.4%</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 300px; background-color: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                        <h4>2022</h4>
+                        <ul>
+                            <li><strong>Revenue:</strong> $75.3 billion</li>
+                            <li><strong>Net Income:</strong> $14.8 billion</li>
+                            <li><strong>RoTCE:</strong> 8.9%</li>
+                            <li><strong>CET1 Ratio:</strong> 13.0%</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h3>Access to Full Financial Reports</h3>
+                <p>For detailed financial statements, including balance sheets, income statements, and cash flow statements, you can refer to Citigroup's official annual reports:</p>
+                
+                <div style="display: flex; flex-wrap: wrap; gap: 20px; margin: 20px 0;">
+                    <div style="flex: 1; min-width: 250px; background-color: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center;">
+                        <h4>2024 Annual Report</h4>
+                        <a href="https://www.citigroup.com/rcs/citigpa/storage/public/citi-2024-annual-report.pdf" target="_blank" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #0d3b66; color: white; text-decoration: none; border-radius: 5px;">Download PDF</a>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 250px; background-color: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center;">
+                        <h4>2023 Annual Report</h4>
+                        <a href="https://www.citigroup.com/rcs/citigpa/storage/public/Citi-2023-Annual-Report.pdf" target="_blank" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #0d3b66; color: white; text-decoration: none; border-radius: 5px;">Download PDF</a>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 250px; background-color: white; padding: 20px; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center;">
+                        <h4>2022 Annual Report</h4>
+                        <a href="https://www.annualreports.com/HostedData/AnnualReportArchive/c/NYSE_C_2022.pdf" target="_blank" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: #0d3b66; color: white; text-decoration: none; border-radius: 5px;">Download PDF</a>
+                    </div>
+                </div>
+                
+                <p>These reports provide comprehensive insights into Citigroup's financial performance, strategic initiatives, and market outlook.</p>
+            </div>
+            <p><a href="https://www.citigroup.com/global/investors/annual-reports-and-proxy-statements" target="_blank" class="btn btn-outline" style="margin: 15px 0;"><i class="fas fa-external-link-alt"></i> Visit Official Citibank Website</a></p>
+        </section>
+
+        <!-- Team Section -->
+        <section id="team">
+            <h2>Our Team</h2>
+            <div class="profile-card">
+                <div class="profile-img">
+                    <img src="https://scontent.fcgy2-1.fna.fbcdn.net/v/t39.30808-1/491940422_1384954746159459_2859734712711408641_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=107&ccb=1-7&_nc_sid=e99d92&_nc_eui2=AeEZ9DCSFKhEzL9d_8wJoSgVJo4n_a8ovwsmjif9ryi_CyuDHR4jXPD-Zm-cqoEi46IZR3oaS7EsaBlTk5ImWF4b&_nc_ohc=hhcosVO7ttcQ7kNvwFIYexF&_nc_oc=Adn2uYtoN1nkLI_Y9RDxKsdADP6nctq5LhffE95PxngF4QpqCCLKKZ-CU5pb193i_TI&_nc_zt=24&_nc_ht=scontent.fcgy2-1.fna&_nc_gid=djfMYJHnqyOJKZoEMBqkgw&oh=00_AfFEkKxaccD555ZVytonqWeVMSMdp1q87ygQHGGFpmy9Fw&oe=680FD729" alt="John Clarence G. Casas" style="width: 100%; height: auto; border-radius: 50%;">
+                </div>
+                <h3>John Clarence G. Casas</h3>
+                <p>BSBA STUDENT</p>
+            </div>
+           
+        </section>
+
+        <!-- References -->
+        <section id="references">
+            <h2>References</h2>
+            <div class="references-container">
+                <h3>Corporate Information</h3>
+                <ul class="reference-list">
+                    <li>Citigroup Inc. (2024). <em>About Us</em>. Retrieved from <a href="https://www.citigroup.com/global/about-us" target="_blank">https://www.citigroup.com/global/about-us</a></li>
+                    <li>Citigroup Inc. (2024). <em>Our History</em>. Retrieved from <a href="https://www.citigroup.com/global/about-us/our-history" target="_blank">https://www.citigroup.com/global/about-us/our-history</a></li>
+                    <li>Citigroup Inc. (2024). <em>Corporate Profile</em>. Retrieved from <a href="https://www.citigroup.com/global/about-us/company-profile" target="_blank">https://www.citigroup.com/global/about-us/company-profile</a></li>
+                </ul>
+                
+                <h3>Leadership</h3>
+                <ul class="reference-list">
+                    <li>Citigroup Inc. (2024). <em>Board of Directors</em>. Retrieved from <a href="https://www.citigroup.com/global/about-us/leadership/board-of-directors" target="_blank">https://www.citigroup.com/global/about-us/leadership/board-of-directors</a></li>
+                    <li>Citigroup Inc. (2024). <em>Executive Management Team</em>. Retrieved from <a href="https://www.citigroup.com/global/about-us/leadership/executive-management-team" target="_blank">https://www.citigroup.com/global/about-us/leadership/executive-management-team</a></li>
+                </ul>
+                
+                <h3>Financial Information</h3>
+                <ul class="reference-list">
+                    <li>Citigroup Inc. (2024). <em>Annual Report 2023</em>. Retrieved from <a href="https://www.citigroup.com/global/investors/financial-information/annual-reports-proxy-statements" target="_blank">https://www.citigroup.com/global/investors/financial-information/annual-reports-proxy-statements</a></li>
+                    <li>Citigroup Inc. (2023). <em>Annual Report 2022</em>. Retrieved from <a href="https://www.annualreports.com/HostedData/AnnualReportArchive/c/NYSE_C_2022.pdf" target="_blank">https://www.annualreports.com/HostedData/AnnualReportArchive/c/NYSE_C_2022.pdf</a></li>
+                    <li>Citigroup Inc. (2024). <em>Quarterly Earnings</em>. Retrieved from <a href="https://www.citigroup.com/global/investors/financial-information/quarterly-earnings" target="_blank">https://www.citigroup.com/global/investors/financial-information/quarterly-earnings</a></li>
+                </ul>
+                
+                <h3>Products and Services</h3>
+                <ul class="reference-list">
+                    <li>Citibank. (2024). <em>Banking Solutions</em>. Retrieved from <a href="https://www.citi.com/banking" target="_blank">https://www.citi.com/banking</a></li>
+                    <li>Citibank. (2024). <em>Credit Cards</em>. Retrieved from <a href="https://www.citi.com/credit-cards" target="_blank">https://www.citi.com/credit-cards</a></li>
+                    <li>Citibank. (2024). <em>Wealth Management</em>. Retrieved from <a href="https://www.citi.com/wealth" target="_blank">https://www.citi.com/wealth</a></li>
+                    <li>Citibank. (2024). <em>Corporate and Investment Banking</em>. Retrieved from <a href="https://www.citibank.com/icg/sa/geographic-presence/asia-pacific/philippines/corporate-and-investment-banking.html" target="_blank">https://www.citibank.com/icg/sa/geographic-presence/asia-pacific/philippines/corporate-and-investment-banking.html</a></li>
+                </ul>
+                
+                <h3>Corporate Social Responsibility</h3>
+                <ul class="reference-list">
+                    <li>Citigroup Inc. (2024). <em>Environmental, Social & Governance Report</em>. Retrieved from <a href="https://www.citigroup.com/global/esg" target="_blank">https://www.citigroup.com/global/esg</a></li>
+                    <li>Citi Foundation. (2024). <em>Citi Foundation</em>. Retrieved from <a href="https://www.citigroup.com/global/about-us/communities/citi-foundation" target="_blank">https://www.citigroup.com/global/about-us/communities/citi-foundation</a></li>
+                </ul>
+                
+                <h3>Awards and Recognitions</h3>
+                <ul class="reference-list">
+                    <li>Citigroup Inc. (2024). <em>Awards & Recognition</em>. Retrieved from <a href="https://www.citigroup.com/global/about-us/awards-recognition" target="_blank">https://www.citigroup.com/global/about-us/awards-recognition</a></li>
+                    <li>Euromoney. (2023). <em>Awards for Excellence</em>. Retrieved from <a href="https://www.euromoney.com/awards/awards-for-excellence" target="_blank">https://www.euromoney.com/awards/awards-for-excellence</a></li>
+                    <li>The Banker. (2023). <em>Bank of the Year Awards</em>. Retrieved from <a href="https://www.thebanker.com/awards/" target="_blank">https://www.thebanker.com/awards/</a></li>
+                </ul>
+                
+                <h3>Image Sources</h3>
+                <ul class="reference-list">
+                    <li>Citigroup Inc. (2024). <em>Leadership Photos</em>. Retrieved from <a href="https://www.citigroup.com/global/about-us/leadership" target="_blank">https://www.citigroup.com/global/about-us/leadership</a></li>
+                    <li>HDR Inc. (2022). <em>Citibank Headquarters</em>. Retrieved from <a href="https://www.hdrinc.com/sites/default/files/2022-10/External_Towards_City_.jpg" target="_blank">https://www.hdrinc.com/sites/default/files/2022-10/External_Towards_City_.jpg</a></li>
+                    <li>LinkedIn. (2024). <em>Professional Profile Images</em>. Retrieved from <a href="https://www.linkedin.com" target="_blank">https://www.linkedin.com</a></li>
+                </ul>
+                
+                <h3>Additional Resources</h3>
+                <ul class="reference-list">
+                    <li>Federal Deposit Insurance Corporation. (2024). <em>Institution Directory - Citibank</em>. Retrieved from <a href="https://www.fdic.gov/resources/bankers/national-institutions/" target="_blank">https://www.fdic.gov/resources/bankers/national-institutions/</a></li>
+                    <li>U.S. Securities and Exchange Commission. (2024). <em>Citigroup Inc. Filings</em>. Retrieved from <a href="https://www.sec.gov/edgar/browse/?CIK=831001" target="_blank">https://www.sec.gov/edgar/browse/?CIK=831001</a></li>
+                    <li>Forbes. (2023). <em>Global 2000: The World's Largest Public Companies</em>. Retrieved from <a href="https://www.forbes.com/global2000/" target="_blank">https://www.forbes.com/global2000/</a></li>
+                </ul>
+            </div>
+            
+            <div class="reference-note">
+                <p><strong>Note:</strong> All information presented on this website is for educational purposes only. The content has been gathered from publicly available sources and official Citigroup/Citibank websites as listed above.</p>
+            </div>
+        </section>
+
+        <!-- Disclaimer -->
+        <section id="disclaimer">
+            <h2>Disclaimer</h2>
+            <p>This website is created for educational purposes only. All information presented here is intended for academic use and does not represent an actual financial institution. The content, including company information, financial data, and other details, is fictional or used for demonstration purposes.</p>
+        </section>
+    </main>
+</div>
+
+<script>
+    // Smooth scrolling and page navigation for links
+    document.querySelectorAll('.nav-links a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            // Get the target section ID
+            const targetId = this.getAttribute('href').substring(1);
+            
+            // Hide all sections first
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the target section with animation
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                // Add classes for animation
+                targetSection.classList.add('page-enter');
+                
+                // Force reflow to ensure animation works
+                void targetSection.offsetWidth;
+                
+                // Add active class to make visible
+                targetSection.classList.add('active');
+                targetSection.classList.add('page-enter-active');
+                
+                // Remove animation classes after transition completes
+                setTimeout(() => {
+                    targetSection.classList.remove('page-enter');
+                    targetSection.classList.remove('page-enter-active');
+                }, 500);
+                
+                // Update page title
+                const sectionTitle = targetSection.querySelector('h2').textContent;
+                document.title = `Citibank - ${sectionTitle}`;
+                
+                // Update URL with hash (without scrolling)
+                history.pushState(null, null, `#${targetId}`);
+            }
+            
+            // Update active class on navigation links
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Close mobile nav if open
+            if (window.innerWidth < 992) {
+                document.getElementById('mainNav').classList.remove('active');
+            }
+        });
+    });
+    
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', () => {
+        const hash = window.location.hash.substring(1);
+        if (hash) {
+            // Simulate a click on the corresponding navigation link
+            const navLink = document.querySelector(`.nav-links a[href="#${hash}"]`);
+            if (navLink) {
+                navLink.click();
+            }
+        } else {
+            // If no hash, go to home
+            const homeLink = document.querySelector('.nav-links a[href="#home"]');
+            if (homeLink) {
+                homeLink.click();
+            }
+        }
+    });
+    
+    // On page load, show the section that matches the URL hash or default to home
+    window.addEventListener('DOMContentLoaded', () => {
+        const hash = window.location.hash.substring(1);
+        if (hash) {
+            // Simulate a click on the corresponding navigation link
+            const navLink = document.querySelector(`.nav-links a[href="#${hash}"]`);
+            if (navLink) {
+                navLink.click();
+            }
+        } else {
+            // If no hash, make sure home is shown and active
+            const homeSection = document.getElementById('home');
+            if (homeSection) {
+                homeSection.classList.add('active');
+            }
+            
+            const homeLink = document.querySelector('.nav-links a[href="#home"]');
+            if (homeLink) {
+                homeLink.classList.add('active');
+            }
+        }
+    });
+    
+    // Mobile navigation toggle
+    const navToggle = document.getElementById('navToggle');
+    const mainNav = document.getElementById('mainNav');
+    
+    navToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('active');
+        navToggle.innerHTML = mainNav.classList.contains('active') ? 
+            '<i class="fas fa-times"></i>' : 
+            '<i class="fas fa-bars"></i>';
+    });
+    
+    // Initialize AOS animations
+    AOS.init({
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+        mirror: false
+    });
+    
+    // Scroll to top button
+    const scrollBtn = document.createElement('div');
+    scrollBtn.classList.add('scroll-to-top');
+    scrollBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    document.body.appendChild(scrollBtn);
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 100) {
+            scrollBtn.classList.add('visible');
+        } else {
+            scrollBtn.classList.remove('visible');
+        }
+    });
+    
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Animate progress bars
+    const animateProgress = () => {
+        const progressBars = document.querySelectorAll('.progress');
+        progressBars.forEach(progress => {
+            const value = progress.getAttribute('data-value');
+            progress.style.width = `${value}%`;
+        });
+    };
+    
+    // Call once on page load for elements in view
+    setTimeout(animateProgress, 500);
+    
+    // Function to add page navigation to each section
+    function addPageNavigation() {
+        // Function disabled - no next/prev buttons as requested
+    }
+    
+    // Create page indicator
+    function createPageIndicator() {
+        const pageIndicator = document.createElement('div');
+        pageIndicator.className = 'page-indicator';
+        document.body.appendChild(pageIndicator);
+        
+        return pageIndicator;
+    }
+    
+    // Update page indicator
+    function updatePageIndicator(currentSection) {
+        const pageIndicator = document.querySelector('.page-indicator');
+        if (pageIndicator) {
+            const sections = Array.from(document.querySelectorAll('section'));
+            const currentIndex = sections.findIndex(section => section.id === currentSection);
+            const totalPages = sections.length;
+            
+            pageIndicator.textContent = `Page ${currentIndex + 1} of ${totalPages}`;
+            pageIndicator.classList.add('visible');
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                pageIndicator.classList.remove('visible');
+            }, 3000);
+        }
+    }
+    
+    // Enhanced navigation handling
+    document.querySelectorAll('.nav-links a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            // Get the target section ID
+            const targetId = this.getAttribute('href').substring(1);
+            
+            // Hide all sections first
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show the target section with animation
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                // Add classes for animation
+                targetSection.classList.add('page-enter');
+                
+                // Force reflow to ensure animation works
+                void targetSection.offsetWidth;
+                
+                // Add active class to make visible
+                targetSection.classList.add('active');
+                targetSection.classList.add('page-enter-active');
+                
+                // Remove animation classes after transition completes
+                setTimeout(() => {
+                    targetSection.classList.remove('page-enter');
+                    targetSection.classList.remove('page-enter-active');
+                }, 500);
+                
+                // Scroll to top of section
+                targetSection.scrollTop = 0;
+                window.scrollTo(0, 0);
+                
+                // Update page title
+                const sectionTitle = targetSection.querySelector('h2')?.textContent || targetId;
+                document.title = `Citibank - ${sectionTitle}`;
+                
+                // Update URL with hash (without scrolling)
+                history.pushState(null, null, `#${targetId}`);
+                
+                // Update page indicator
+                updatePageIndicator(targetId);
+            }
+            
+            // Update active class on navigation links
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Close mobile nav if open
+            if (window.innerWidth < 992) {
+                document.getElementById('mainNav').classList.remove('active');
+            }
+        });
+    });
+    
+    // Initialize page structure on document load
+    window.addEventListener('DOMContentLoaded', () => {
+        // Create page indicator
+        createPageIndicator();
+        
+        // Create page transition overlay
+        createPageTransitionOverlay();
+        
+        // Set page numbers
+        setPageNumbers();
+        
+        // Handle initial page based on hash
+        const hash = window.location.hash.substring(1);
+        if (hash) {
+            // Simulate a click on the corresponding navigation link
+            const navLink = document.querySelector(`.nav-links a[href="#${hash}"]`);
+            if (navLink) {
+                navLink.click();
+            }
+        } else {
+            // If no hash, make sure home is shown and active
+            const homeSection = document.getElementById('home');
+            if (homeSection) {
+                homeSection.classList.add('active');
+                updatePageIndicator('home');
+            }
+            
+            const homeLink = document.querySelector('.nav-links a[href="#home"]');
+            if (homeLink) {
+                homeLink.classList.add('active');
+            }
+        }
+    });
+    
+    // Enable keyboard navigation (left/right arrows)
+    document.addEventListener('keydown', (e) => {
+        // Get current active section
+        const activeSection = document.querySelector('section.active');
+        if (!activeSection) return;
+        
+        const sections = Array.from(document.querySelectorAll('section'));
+        const currentIndex = sections.indexOf(activeSection);
+        
+        // Left arrow key: go to previous section
+        if (e.key === 'ArrowLeft' && currentIndex > 0) {
+            const prevSectionId = sections[currentIndex - 1].id;
+            document.querySelector(`.nav-links a[href="#${prevSectionId}"]`).click();
+        }
+        
+        // Right arrow key: go to next section
+        if (e.key === 'ArrowRight' && currentIndex < sections.length - 1) {
+            const nextSectionId = sections[currentIndex + 1].id;
+            document.querySelector(`.nav-links a[href="#${nextSectionId}"]`).click();
+        }
+    });
+    
+    // Create page transition overlay
+    function createPageTransitionOverlay() {
+        const overlay = document.createElement('div');
+        overlay.className = 'page-transition-overlay';
+        
+        const spinner = document.createElement('div');
+        spinner.className = 'page-transition-spinner';
+        
+        overlay.appendChild(spinner);
+        document.body.appendChild(overlay);
+        
+        return overlay;
+    }
+    
+    // Set page numbers for each section
+    function setPageNumbers() {
+        const sections = Array.from(document.querySelectorAll('section'));
+        sections.forEach((section, index) => {
+            section.setAttribute('data-page-number', `${index + 1} / ${sections.length}`);
+        });
+    }
+    
+    // Enhanced page navigation with transition effect
+    function enhancedPageTransition(fromSection, toSection) {
+        const overlay = document.querySelector('.page-transition-overlay');
+        if (!overlay) return;
+        
+        // Show overlay
+        overlay.classList.add('active');
+        
+        // Hide all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        // After short delay, show target section
+        setTimeout(() => {
+            // Show the target section
+            toSection.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Hide overlay
+            setTimeout(() => {
+                overlay.classList.remove('active');
+            }, 200);
+        }, 300);
+    }
+    
+    // Enhanced navigation handling with transition effect
+    document.querySelectorAll('.nav-links a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            // Get the target section ID
+            const targetId = this.getAttribute('href').substring(1);
+            const currentActive = document.querySelector('section.active');
+            const targetSection = document.getElementById(targetId);
+            
+            if (targetSection && targetSection !== currentActive) {
+                // Perform the transition
+                enhancedPageTransition(currentActive, targetSection);
+                
+                // Update page title
+                const sectionTitle = targetSection.querySelector('h2')?.textContent || targetId;
+                document.title = `Citibank - ${sectionTitle}`;
+                
+                // Update URL with hash (without scrolling)
+                history.pushState(null, null, `#${targetId}`);
+                
+                // Update page indicator
+                updatePageIndicator(targetId);
+            }
+            
+            // Update active class on navigation links
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Close mobile nav if open
+            if (window.innerWidth < 992) {
+                document.getElementById('mainNav').classList.remove('active');
+            }
+        });
+    });
+    
+    // Initialize page structure on document load
+    window.addEventListener('DOMContentLoaded', () => {
+        // Create page navigation controls
+        addPageNavigation();
+        
+        // Create page indicator
+        createPageIndicator();
+        
+        // Create page transition overlay
+        createPageTransitionOverlay();
+        
+        // Set page numbers
+        setPageNumbers();
+        
+        // Handle initial page based on hash
+        const hash = window.location.hash.substring(1);
+        if (hash) {
+            // Simulate a click on the corresponding navigation link
+            const navLink = document.querySelector(`.nav-links a[href="#${hash}"]`);
+            if (navLink) {
+                navLink.click();
+            }
+        } else {
+            // If no hash, make sure home is shown and active
+            const homeSection = document.getElementById('home');
+            if (homeSection) {
+                homeSection.classList.add('active');
+                updatePageIndicator('home');
+            }
+            
+            const homeLink = document.querySelector('.nav-links a[href="#home"]');
+            if (homeLink) {
+                homeLink.classList.add('active');
+            }
+        }
+    });
+    
+    // Rest of existing script...
+</script>
+</body>
+</html> 
